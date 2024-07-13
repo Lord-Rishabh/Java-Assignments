@@ -6,10 +6,9 @@ import java.util.Scanner;
 
 import models.Item;
 
-
 public class ItemIOHandler {
 
-    private Map<String, Item> items = new HashMap<>();
+    private final Map<String, Item> items = new HashMap<>();
 
     public void addItem(String[] args) {
         String name = null;
@@ -20,16 +19,16 @@ public class ItemIOHandler {
         for (int i = 0; i < args.length; i++) {
             switch (args[i]) {
                 case "-name":
-                    name = args[++i];
+                    name = setName(args[++i]);
                     break;
                 case "-price":
-                    price = Double.parseDouble(args[++i]);
+                    price = setPrice(args[++i]);
                     break;
                 case "-quantity":
-                    quantity = Integer.parseInt(args[++i]);
+                    quantity = setQuantity(args[++i]);
                     break;
                 case "-type":
-                    type = args[++i];
+                    type = setType(args[++i]);
                     break;
                 default:
                     throw new RuntimeException("Invalid command line argument: " + args[i]);
@@ -38,6 +37,41 @@ public class ItemIOHandler {
 
         Item item = new Item(name, price, quantity, type);
         items.put(name, item);
+    }
+
+    private String setName(String name) {
+        if( name == null || items.containsKey(name))
+            throw new RuntimeException("Item name already exist or is null.");
+        return name;
+    }
+
+    private String setType(String type) {
+        if(type == null)
+            throw new RuntimeException("Invalid Item Type");
+
+        return type;
+    }
+
+    private double setPrice(String price) {
+        if(price == null)
+            throw new IllegalArgumentException("Item price cannot be null");
+
+        try {
+            return Double.parseDouble(price);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("Item Price is not valid");
+        }
+    }
+
+    private int setQuantity(String quantity) {
+        if(quantity == null)
+            throw new IllegalArgumentException("Item quantity cannot be null");
+
+        try {
+            return Integer.parseInt(quantity);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("Item Quantity is not valid");
+        }
     }
 
     public boolean userWantsToAddItem() {
@@ -49,14 +83,14 @@ public class ItemIOHandler {
 
     public void getInputFromUserAndAddItem() {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Enter item details : ");
+        System.out.print("Enter item details : ");
         String input = scan.nextLine();
         String[] inputArgs = input.split(" ");
+
         addItem(inputArgs);
     }
 
     public void calculateTaxAndFinalPrice() {
-
         for(Item item : items.values()) {
             double tax = calculateTax(item);
             double finalPrice = tax + item.getPrice();
@@ -64,11 +98,11 @@ public class ItemIOHandler {
             item.setTax(tax);
             item.setFinalPrice(finalPrice);
         }
-
     }
+
     public double calculateTax(Item item) {
         try {
-            return Item.calculateTax(item);
+            return item.calculateTax(item);
         }
         catch ( Exception e) {
             throw new RuntimeException(e.getMessage());
@@ -77,7 +111,16 @@ public class ItemIOHandler {
 
     public void printAllItems() {
         for(Item item : items.values()) {
-            Item.printItemDetails(item);
+            printItemDetails(item);
         }
+    }
+
+    public void printItemDetails(Item item) {
+        System.out.print( item.getName() + " " );
+        System.out.print( item.getPrice() + " " );
+        System.out.print( item.getQuantity() + " " );
+        System.out.print( item.getType() + " " );
+        System.out.print( item.getTax() + " " );
+        System.out.println( item.getFinalPrice() );
     }
 }

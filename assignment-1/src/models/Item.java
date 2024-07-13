@@ -21,24 +21,14 @@ public class Item {
     }
 
     public Item() {
-
     };
 
-    public static void printItemDetails(Item item) {
-        System.out.print(item.name + " ");
-        System.out.print(item.price + " ");
-        System.out.print(item.quantity + " ");
-        System.out.print(item.type + " ");
-        System.out.print(item.tax + " ");
-        System.out.println(item.finalPrice);
-    }
-
-    public static double calculateTax(Item currItem) {
+    public double calculateTax(Item currItem) {
         return switch (currItem.type) {
             case ("raw") -> calculateRawTax(currItem.price);
             case ("manufactured") -> calculateManufacturedTax(currItem.price);
             case ("imported") -> calculateImportedTax(currItem.price);
-            default -> -1;
+            default -> throw new RuntimeException("Invalid Item Type !");
         };
     }
 
@@ -56,6 +46,9 @@ public class Item {
     }
     public double getTax() {
         return tax;
+    }
+    public double getFinalPrice() {
+        return finalPrice;
     }
 
     public void setTax(double tax) {
