@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 import models.Item;
+import models.ItemType;
 
 public class ItemIOHandler {
 
@@ -14,7 +15,7 @@ public class ItemIOHandler {
         String name = null;
         Double price = null;
         Integer quantity = null;
-        String type = null;
+        ItemType type = null;
 
         for (int i = 0; i < args.length; i++) {
             switch (args[i]) {
@@ -45,11 +46,11 @@ public class ItemIOHandler {
         return name;
     }
 
-    private String setType(String type) {
+    private ItemType setType(String type) {
         if(type == null)
             throw new RuntimeException("Invalid Item Type");
-
-        return type;
+        ItemType current = ItemType.valueOf(type.toLowerCase());
+        return current;
     }
 
     private double setPrice(String price) {
@@ -116,11 +117,11 @@ public class ItemIOHandler {
     }
 
     public void printItemDetails(Item item) {
-        System.out.print( item.getName() + " " );
-        System.out.print( item.getPrice() + " " );
-        System.out.print( item.getQuantity() + " " );
-        System.out.print( item.getType() + " " );
-        System.out.print( item.getTax() + " " );
-        System.out.println( item.getFinalPrice() );
+        System.out.print( "Item Name:" + item.getName() + "  " );
+        System.out.print( "Item Price:" + item.getPrice() + "  " );
+        System.out.print( "Item Quantity:" + item.getQuantity() + "  " );
+        System.out.print( "Item Type:" + item.getType() + "  " );
+        System.out.print( "Item Tax:" + item.getTax() + "  " );
+        System.out.println( "Item Final Price:" + item.getFinalPrice() );
     }
 }

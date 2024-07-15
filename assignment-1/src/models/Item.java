@@ -9,11 +9,11 @@ public class Item {
     private String name;
     private double price;
     private int quantity;
-    private String type;
+    private ItemType type;
     private double tax;
     private double finalPrice;
 
-    public Item(String name, double price, int quantity, String type) {
+    public Item(String name, double price, int quantity, ItemType type) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
@@ -25,9 +25,9 @@ public class Item {
 
     public double calculateTax(Item currItem) {
         return switch (currItem.type) {
-            case ("raw") -> calculateRawTax(currItem.price);
-            case ("manufactured") -> calculateManufacturedTax(currItem.price);
-            case ("imported") -> calculateImportedTax(currItem.price);
+            case raw -> calculateRawTax(currItem.price);
+            case manufactured -> calculateManufacturedTax(currItem.price);
+            case imported -> calculateImportedTax(currItem.price);
             default -> throw new RuntimeException("Invalid Item Type !");
         };
     }
@@ -41,7 +41,7 @@ public class Item {
     public int getQuantity() {
         return quantity;
     }
-    public String getType() {
+    public ItemType getType() {
         return type;
     }
     public double getTax() {
