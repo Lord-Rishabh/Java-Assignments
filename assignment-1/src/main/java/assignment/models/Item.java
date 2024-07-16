@@ -1,8 +1,6 @@
-package models;
+package assignment.models;
 
-import static models.ItemImported.calculateImportedTax;
-import static models.ItemManufactured.calculateManufacturedTax;
-import static models.ItemRaw.calculateRawTax;
+import static assignment.models.ItemImported.calculateImportedTax;
 
 public class Item {
 
@@ -25,8 +23,8 @@ public class Item {
 
     public double calculateTax(Item currItem) {
         return switch (currItem.type) {
-            case raw -> calculateRawTax(currItem.price);
-            case manufactured -> calculateManufacturedTax(currItem.price);
+            case raw -> ItemRaw.calculateRawTax(currItem.price);
+            case manufactured -> ItemManufactured.calculateManufacturedTax(currItem.price);
             case imported -> calculateImportedTax(currItem.price);
             default -> throw new RuntimeException("Invalid Item Type !");
         };

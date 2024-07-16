@@ -1,4 +1,4 @@
-package config;
+package assignment.config;
 
 public class Constants {
 
@@ -19,4 +19,7 @@ public class Constants {
     public static double SURGE_CHARGE_BETWEEN_100_TO_200 = 10;
     public static double SURGE_CHARGE_ABOVE_200_PERCENTAGE = 0.05;
 
+
+    // Arguments constants
+    public static int ARGS_LENGTH = 8;
 }

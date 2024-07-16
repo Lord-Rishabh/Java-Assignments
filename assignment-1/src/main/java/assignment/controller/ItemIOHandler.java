@@ -1,20 +1,40 @@
-package controller;
+package assignment.controller;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import models.Item;
-import models.ItemType;
+import assignment.models.ItemType;
+import assignment.models.Item;
+import static assignment.config.Constants.ARGS_LENGTH;
 
 public class ItemIOHandler {
 
     private final Map<String, Item> items = new HashMap<>();
 
+    public boolean userWantsToAddItem() {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Do you want to enter details of any other item (y/n) : ");
+        String userInput = scan.nextLine();
+        return userInput.equalsIgnoreCase("y");
+    }
+
+    public void getInputFromUserAndAddItem() {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Enter item details : ");
+        String input = scan.nextLine();
+        String[] inputArgs = input.split(" ");
+
+        if(inputArgs.length != ARGS_LENGTH)
+            throw new RuntimeException("Item Details cannot be null");
+
+        addItem(inputArgs);
+    }
+
     public void addItem(String[] args) {
         String name = null;
-        Double price = null;
-        Integer quantity = null;
+        double price = 0;
+        int quantity = 0;
         ItemType type = null;
 
         for (int i = 0; i < args.length; i++) {
@@ -49,8 +69,11 @@ public class ItemIOHandler {
     private ItemType setType(String type) {
         if(type == null)
             throw new RuntimeException("Invalid Item Type");
-        ItemType current = ItemType.valueOf(type.toLowerCase());
-        return current;
+        try {
+            return ItemType.valueOf(type.toLowerCase());
+        } catch (IllegalArgumentException e) {
+            throw new RuntimeException("Invalid Item Type");
+        }
     }
 
     private double setPrice(String price) {
@@ -73,22 +96,6 @@ public class ItemIOHandler {
         } catch (NumberFormatException e) {
             throw new NumberFormatException("Item Quantity is not valid");
         }
-    }
-
-    public boolean userWantsToAddItem() {
-        Scanner scan = new Scanner(System.in);
-        System.out.print("Do you want to enter details of any other item (y/n) : ");
-        String userInput = scan.nextLine();
-        return userInput.equalsIgnoreCase("y");
-    }
-
-    public void getInputFromUserAndAddItem() {
-        Scanner scan = new Scanner(System.in);
-        System.out.print("Enter item details : ");
-        String input = scan.nextLine();
-        String[] inputArgs = input.split(" ");
-
-        addItem(inputArgs);
     }
 
     public void calculateTaxAndFinalPrice() {
@@ -123,5 +130,9 @@ public class ItemIOHandler {
         System.out.print( "Item Type:" + item.getType() + "  " );
         System.out.print( "Item Tax:" + item.getTax() + "  " );
         System.out.println( "Item Final Price:" + item.getFinalPrice() );
+    }
+
+    public Map<String, Item> getItems() {
+        return items;
     }
 }
