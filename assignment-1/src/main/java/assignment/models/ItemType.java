@@ -1,5 +1,5 @@
 package assignment.models;
 
 public enum ItemType {
-    raw, manufactured, imported
+    RAW, MANUFACTURED, IMPORTED
 }

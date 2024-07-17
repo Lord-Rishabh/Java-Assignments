@@ -1,15 +1,12 @@
-package assignment.models;
+package assignment.models.tax.types;
 
 import assignment.config.Constants;
+import assignment.models.tax.TaxCalculator;
 
-public class ItemImported {
+public class ImportedTaxCalculator implements TaxCalculator {
 
-  /**
-   * The method is used to calculate tax of item of type 'imported'.
-   * @param itemPrice represents the price of the item whose tax is to be calculated
-   */
-  public static double calculateImportedTax(double itemPrice) {
-
+  @Override
+  public double calculateTax(double itemPrice) {
     double importDutyTaxCost = Constants.IMPORT_DUTY_TAX * itemPrice;
     double itemCostAfterImportDutyTax = importDutyTaxCost + itemPrice;
     double totalTax = importDutyTaxCost;

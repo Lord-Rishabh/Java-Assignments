@@ -1,138 +1,194 @@
 package assignment.controller;
 
+import static assignment.config.Constants.ARGS_LENGTH;
+
+import assignment.models.Item;
+import assignment.models.ItemType;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import assignment.models.ItemType;
-import assignment.models.Item;
-import static assignment.config.Constants.ARGS_LENGTH;
+public class ItemIoHandler {
 
-public class ItemIOHandler {
+  private final Map<String, Item> items = new HashMap<>();
 
-    private final Map<String, Item> items = new HashMap<>();
+  /**
+   * Prompts the user to enter details of another item.
+   * @return true if the user wants to add another item, false otherwise
+   */
+  public boolean userWantsToAddItem() {
+    Scanner scan = new Scanner(System.in);
+    System.out.print("Do you want to enter details of any other item (y/n) : ");
+    String userInput = scan.nextLine();
+    scan.close();
+    return userInput.equalsIgnoreCase("y");
+  }
 
-    public boolean userWantsToAddItem() {
-        Scanner scan = new Scanner(System.in);
-        System.out.print("Do you want to enter details of any other item (y/n) : ");
-        String userInput = scan.nextLine();
-        return userInput.equalsIgnoreCase("y");
+  /**
+   * Gets input from the user and adds an item.
+   */
+  public void getInputFromUserAndAddItem() {
+    Scanner scan = new Scanner(System.in);
+    System.out.print("Enter item details : ");
+    String input = scan.nextLine();
+    scan.close();
+    String[] inputArgs = input.split(" ");
+
+    if (inputArgs.length != ARGS_LENGTH) {
+      throw new RuntimeException("Item Details cannot be null");
     }
 
-    public void getInputFromUserAndAddItem() {
-        Scanner scan = new Scanner(System.in);
-        System.out.print("Enter item details : ");
-        String input = scan.nextLine();
-        String[] inputArgs = input.split(" ");
+    addItem(inputArgs);
+  }
 
-        if(inputArgs.length != ARGS_LENGTH)
-            throw new RuntimeException("Item Details cannot be null");
+  /**
+   * Adds an item based on the provided arguments.
+   * @param args the arguments containing item details
+   */
+  public void addItem(String[] args) {
+    String name = null;
+    double price = 0;
+    int quantity = 0;
+    ItemType type = null;
 
-        addItem(inputArgs);
+    for (int i = 0; i < args.length; i++) {
+      switch (args[i]) {
+        case "-name":
+          name = setName(args[++i]);
+          break;
+        case "-price":
+          price = setPrice(args[++i]);
+          break;
+        case "-quantity":
+          quantity = setQuantity(args[++i]);
+          break;
+        case "-type":
+          type = setType(args[++i]);
+          break;
+        default:
+          throw new RuntimeException("Invalid command line argument: " + args[i]);
+      }
     }
 
-    public void addItem(String[] args) {
-        String name = null;
-        double price = 0;
-        int quantity = 0;
-        ItemType type = null;
+    Item item = new Item(name, price, quantity, type);
+    items.put(name, item);
+  }
 
-        for (int i = 0; i < args.length; i++) {
-            switch (args[i]) {
-                case "-name":
-                    name = setName(args[++i]);
-                    break;
-                case "-price":
-                    price = setPrice(args[++i]);
-                    break;
-                case "-quantity":
-                    quantity = setQuantity(args[++i]);
-                    break;
-                case "-type":
-                    type = setType(args[++i]);
-                    break;
-                default:
-                    throw new RuntimeException("Invalid command line argument: " + args[i]);
-            }
-        }
+  /**
+   * Sets the name of the item.
+   * @param name the name of the item
+   * @return the validated item name
+   */
+  private String setName(String name) {
+    if (name == null || items.containsKey(name)) {
+      throw new RuntimeException("Item name already exists or is null.");
+    }
+    return name;
+  }
 
-        Item item = new Item(name, price, quantity, type);
-        items.put(name, item);
+  /**
+   * Sets the type of the item.
+   * @param type the type of the item
+   * @return the validated item type
+   */
+  private ItemType setType(String type) {
+    if (type == null) {
+      throw new RuntimeException("Invalid Item Type");
+    }
+    try {
+      return ItemType.valueOf(type.toUpperCase());
+    } catch (IllegalArgumentException e) {
+      throw new RuntimeException("Invalid Item Type");
+    }
+  }
+
+  /**
+   * Sets the price of the item.
+   * @param price the price of the item
+   * @return the validated item price
+   */
+  private double setPrice(String price) {
+    if (price == null) {
+      throw new IllegalArgumentException("Item price cannot be null");
     }
 
-    private String setName(String name) {
-        if( name == null || items.containsKey(name))
-            throw new RuntimeException("Item name already exist or is null.");
-        return name;
+    try {
+      return Double.parseDouble(price);
+    } catch (NumberFormatException e) {
+      throw new NumberFormatException("Item Price is not valid");
+    }
+  }
+
+  /**
+   * Sets the quantity of the item.
+   * @param quantity the quantity of the item
+   * @return the validated item quantity
+   */
+  private int setQuantity(String quantity) {
+    if (quantity == null) {
+      throw new IllegalArgumentException("Item quantity cannot be null");
     }
 
-    private ItemType setType(String type) {
-        if(type == null)
-            throw new RuntimeException("Invalid Item Type");
-        try {
-            return ItemType.valueOf(type.toLowerCase());
-        } catch (IllegalArgumentException e) {
-            throw new RuntimeException("Invalid Item Type");
-        }
+    try {
+      return Integer.parseInt(quantity);
+    } catch (NumberFormatException e) {
+      throw new NumberFormatException("Item Quantity is not valid");
     }
+  }
 
-    private double setPrice(String price) {
-        if(price == null)
-            throw new IllegalArgumentException("Item price cannot be null");
+  /**
+   * Calculates tax and final price for all items.
+   */
+  public void calculateTaxAndFinalPrice() {
+    for (Item item : items.values()) {
+      double tax = calculateTax(item);
+      double finalPrice = tax + item.getPrice();
 
-        try {
-            return Double.parseDouble(price);
-        } catch (NumberFormatException e) {
-            throw new NumberFormatException("Item Price is not valid");
-        }
+      item.setTax(tax);
+      item.setFinalPrice(finalPrice);
     }
+  }
 
-    private int setQuantity(String quantity) {
-        if(quantity == null)
-            throw new IllegalArgumentException("Item quantity cannot be null");
-
-        try {
-            return Integer.parseInt(quantity);
-        } catch (NumberFormatException e) {
-            throw new NumberFormatException("Item Quantity is not valid");
-        }
+  /**
+   * Calculates the tax for a given item.
+   * @param item : the item for which tax is to be calculated
+   * @return the calculated tax
+   */
+  public double calculateTax(Item item) {
+    try {
+      return item.calculateTax(item);
+    } catch (Exception e) {
+      throw new RuntimeException(e.getMessage());
     }
+  }
 
-    public void calculateTaxAndFinalPrice() {
-        for(Item item : items.values()) {
-            double tax = calculateTax(item);
-            double finalPrice = tax + item.getPrice();
-
-            item.setTax(tax);
-            item.setFinalPrice(finalPrice);
-        }
+  /**
+   * Prints the details of all items.
+   */
+  public void printAllItems() {
+    for (Item item : items.values()) {
+      printItemDetails(item);
     }
+  }
 
-    public double calculateTax(Item item) {
-        try {
-            return item.calculateTax(item);
-        }
-        catch ( Exception e) {
-            throw new RuntimeException(e.getMessage());
-        }
-    }
+  /**
+   * Prints the details of a given item.
+   * @param item : the item whose details are to be printed
+   */
+  public void printItemDetails(Item item) {
+    System.out.print("Item Name:" + item.getName() + "  ");
+    System.out.print("Item Price:" + item.getPrice() + "  ");
+    System.out.print("Item Quantity:" + item.getQuantity() + "  ");
+    System.out.print("Item Type:" + item.getType() + "  ");
+    System.out.print("Item Tax:" + item.getTax() + "  ");
+    System.out.println("Item Final Price:" + item.getFinalPrice());
+  }
 
-    public void printAllItems() {
-        for(Item item : items.values()) {
-            printItemDetails(item);
-        }
-    }
-
-    public void printItemDetails(Item item) {
-        System.out.print( "Item Name:" + item.getName() + "  " );
-        System.out.print( "Item Price:" + item.getPrice() + "  " );
-        System.out.print( "Item Quantity:" + item.getQuantity() + "  " );
-        System.out.print( "Item Type:" + item.getType() + "  " );
-        System.out.print( "Item Tax:" + item.getTax() + "  " );
-        System.out.println( "Item Final Price:" + item.getFinalPrice() );
-    }
-
-    public Map<String, Item> getItems() {
-        return items;
-    }
+  /**
+   * Gets all the items.
+   * @return a map of item names to items
+   */
+  public Map<String, Item> getItems() {
+    return items;
+  }
 }
