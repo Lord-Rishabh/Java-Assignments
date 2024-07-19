@@ -5,22 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06c36675-83b9-474e-97f3-ec84ed47bd5c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../assignment-2/config/checkstyle/checkstyle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../assignment-2/config/pmd/ruleset.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/assignment/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/assignment/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/assignment/config/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/assignment/config/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/assignment/controller/ItemIOHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/assignment/controller/ItemIOHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/assignment/models/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/assignment/models/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/assignment/models/ItemImported.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/assignment/models/ItemImported.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/assignment/models/ItemManufactured.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/assignment/models/ItemManufactured.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/assignment/models/ItemRaw.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/assignment/models/ItemRaw.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/assignment/models/ItemType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/assignment/models/ItemType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/assignment/controller/ItemIOHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/assignment/controller/ItemIOHandlerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/assignment/models/ItemTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/assignment/models/ItemTester.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/assignment/models/ItemImported.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/assignment/models/ItemManufactured.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/assignment/models/ItemRaw.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,11 +49,13 @@
     "Gradle.ItemIoHandlerTest.calculateImportedTax.executor": "Run",
     "Gradle.ItemIoHandlerTest.calculateManufacturedTax.executor": "Run",
     "Gradle.ItemIoHandlerTest.calculateRawTax.executor": "Run",
+    "Gradle.ItemIoHandlerTest.duplicateItemName.executor": "Run",
     "Gradle.ItemIoHandlerTest.executor": "Run",
     "Gradle.ItemTester.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "newAssignment",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/risha/OneDrive/Desktop/Java Assignments/assignment-1",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -75,7 +67,7 @@
       <recent name="C:\Users\risha\OneDrive\Desktop\Assignment\src\main\java\assignment\org" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.ItemIoHandlerTest.calculateManufacturedTax">
+  <component name="RunManager" selected="Gradle.ItemIoHandlerTest.duplicateItemName">
     <configuration name="ItemIoHandlerTest.calculateImportedTax" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -148,8 +140,33 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="ItemIoHandlerTest.duplicateItemName" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;assignment.controller.ItemIoHandlerTest.duplicateItemName&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.ItemIoHandlerTest.duplicateItemName" />
         <item itemvalue="Gradle.ItemIoHandlerTest.calculateManufacturedTax" />
         <item itemvalue="Gradle.ItemIoHandlerTest.calculateRawTax" />
         <item itemvalue="Gradle.ItemIoHandlerTest.calculateImportedTax" />
@@ -166,25 +183,5 @@
       <updated>1721051351495</updated>
     </task>
     <servers />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/assignment/controller/ItemIoHandlerTest.java</url>
-          <line>99</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/test/java/assignment/controller/ItemIoHandlerTest.java</url>
-          <line>96</line>
-          <properties class="assignment.controller.ItemIoHandlerTest">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
