@@ -19,7 +19,7 @@
         <exclude name="ShortVariable"/>
         <exclude name="ShortClassName"/>
         <exclude name="LinguisticNaming"/>
-        <exclude name="ClassNamingConventions"></exclude>
+        <exclude name="ClassNamingConventions"/>
     </rule>
 
     <rule ref="category/java/design.xml">
