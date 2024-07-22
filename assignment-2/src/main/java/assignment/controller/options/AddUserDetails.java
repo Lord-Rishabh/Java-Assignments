@@ -1,14 +1,18 @@
 package assignment.controller.options;
 
 import static assignment.config.Constants.MAX_ADDRESS_LENGTH;
-import static assignment.config.Constants.MAX_AGE;
 import static assignment.config.Constants.MAX_NAME_LENGTH;
 import static assignment.config.Constants.MAX_ROLL_NUMBER_LENGTH;
 import static assignment.config.Constants.MIN_ADDRESS_LENGTH;
-import static assignment.config.Constants.MIN_AGE;
 import static assignment.config.Constants.MIN_COURSES_SIZE;
 import static assignment.config.Constants.MIN_NAME_LENGTH;
 import static assignment.config.Constants.VALID_COURSES;
+
+import static assignment.utils.validations.ValidateAddUser.validAddress;
+import static assignment.utils.validations.ValidateAddUser.validAge;
+import static assignment.utils.validations.ValidateAddUser.validCourses;
+import static assignment.utils.validations.ValidateAddUser.validName;
+import static assignment.utils.validations.ValidateAddUser.validRollNumber;
 
 import assignment.controller.UserController;
 import assignment.models.User;
@@ -43,7 +47,7 @@ public class AddUserDetails {
    * @param user           the user to be added
    */
   public static void addUser(UserController userController, User user) {
-    userController.addUser(user.getRollNumber(), user);
+    userController.addUser(user);
   }
 
   /**
@@ -56,15 +60,13 @@ public class AddUserDetails {
     System.out.println("char-limit = " + MIN_NAME_LENGTH + "-" + MAX_NAME_LENGTH + "): ");
     String userName = scan.nextLine();
 
-    if (userName == null || userName.length() < MIN_NAME_LENGTH) {
-      System.err.println("Name cannot be less than " + MIN_NAME_LENGTH + " characters.");
-      return getFullName();
-    } else if (userName.length() > MAX_NAME_LENGTH) {
-      System.err.println("Name cannot be more than " + MAX_NAME_LENGTH + " characters long.");
-      return getFullName();
+    String name;
+    if (validName(userName)) {
+      name = userName;
     } else {
-      return userName;
+      name = getFullName();
     }
+    return name;
   }
 
   /**
@@ -76,22 +78,11 @@ public class AddUserDetails {
     System.out.println("Enter your Age (5-100): ");
     String userAge = scan.nextLine();
 
-    if (userAge.isEmpty()) {
-      System.err.println("Age should not be empty.");
-      return getAge();
-    }
-
     int age;
-    try {
+    if (validAge(userAge)) {
       age = Integer.parseInt(userAge);
-    } catch (NumberFormatException e) {
-      System.err.println("Enter a valid age.");
-      return getAge();
-    }
-
-    if (age < MIN_AGE || age > MAX_AGE) {
-      System.err.println("Age must be between " + MIN_AGE + " and " + MAX_AGE + " years.");
-      return getAge();
+    } else {
+      age = getAge();
     }
 
     return age;
@@ -107,15 +98,13 @@ public class AddUserDetails {
     System.out.println("char-limit = " + MIN_ADDRESS_LENGTH + "-" + MAX_ADDRESS_LENGTH + ") : ");
     String userAddress = scan.nextLine();
 
-    if (userAddress.length() < MIN_ADDRESS_LENGTH) {
-      System.err.println("Address cannot be less than " + MIN_ADDRESS_LENGTH + " characters.");
-      return getAddress();
-    } else if (userAddress.length() > MAX_ADDRESS_LENGTH) {
-      System.err.println("Address cannot be more than " + MAX_ADDRESS_LENGTH + " characters long.");
-      return getAddress();
+    String address;
+    if (validAddress(userAddress)) {
+      address = userAddress;
     } else {
-      return userAddress;
+      address = getAddress();
     }
+    return address;
   }
 
   /**
@@ -128,16 +117,13 @@ public class AddUserDetails {
     System.out.println("char-limit = " + MAX_ROLL_NUMBER_LENGTH + ") : ");
     String userRollNumber = scan.nextLine();
 
-    if (userRollNumber.isEmpty()) {
-      System.err.println("Roll Number cannot be empty.");
-      return getRollNumber();
-    } else if (userRollNumber.length() > MAX_ROLL_NUMBER_LENGTH) {
-      System.err.print("Roll Number cannot be more than ");
-      System.out.println(MAX_ROLL_NUMBER_LENGTH + " characters long.");
-      return getRollNumber();
+    String rollNumber;
+    if (validRollNumber(userRollNumber)) {
+      rollNumber = userRollNumber;
     } else {
-      return userRollNumber;
+      rollNumber = getRollNumber();
     }
+    return rollNumber;
   }
 
   /**
@@ -166,11 +152,10 @@ public class AddUserDetails {
       courses.add(course);
     }
 
-    if (courses.size() < MIN_COURSES_SIZE) {
-      System.err.println("Minimum " + MIN_COURSES_SIZE + " courses should be added.");
+    if (validCourses(courses)) {
+      return courses;
+    } else {
       return getCourses();
     }
-
-    return courses;
   }
 }
