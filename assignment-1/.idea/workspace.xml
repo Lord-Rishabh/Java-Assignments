@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="06c36675-83b9-474e-97f3-ec84ed47bd5c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../assignment-2/config/checkstyle/checkstyle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../assignment-2/config/pmd/ruleset.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/assignment/models/ItemImported.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/assignment/models/ItemManufactured.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/assignment/models/ItemRaw.java" beforeDir="false" />
-    </list>
+    <list default="true" id="06c36675-83b9-474e-97f3-ec84ed47bd5c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,27 +34,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.Assignment [:Main.main()].executor": "Run",
-    "Gradle.Download Sources.executor": "Run",
-    "Gradle.ItemIOHandlerTest.executor": "Run",
-    "Gradle.ItemIoHandlerTest.calculateImportedTax.executor": "Run",
-    "Gradle.ItemIoHandlerTest.calculateManufacturedTax.executor": "Run",
-    "Gradle.ItemIoHandlerTest.calculateRawTax.executor": "Run",
-    "Gradle.ItemIoHandlerTest.duplicateItemName.executor": "Run",
-    "Gradle.ItemIoHandlerTest.executor": "Run",
-    "Gradle.ItemTester.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "newAssignment",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/risha/OneDrive/Desktop/Java Assignments/assignment-1",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.sourceCode.Java"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Assignment [:Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ItemIOHandlerTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ItemIoHandlerTest.calculateImportedTax.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ItemIoHandlerTest.calculateManufacturedTax.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ItemIoHandlerTest.calculateRawTax.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ItemIoHandlerTest.duplicateItemName.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ItemIoHandlerTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ItemTester.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;newAssignment&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/risha/OneDrive/Desktop/Java Assignments/assignment-1&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.Java&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\risha\OneDrive\Desktop\Assignment\src\main\java\assignment\org" />
