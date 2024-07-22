@@ -56,8 +56,8 @@ public class AddUserDetails {
    */
   private static String getFullName() {
     Scanner scan = new Scanner(System.in);
-    System.out.print("Enter your Full Name");
-    System.out.println("char-limit = " + MIN_NAME_LENGTH + "-" + MAX_NAME_LENGTH + "): ");
+    System.out.print("Enter your Full Name ");
+    System.out.print("(char-limit = " + MIN_NAME_LENGTH + "-" + MAX_NAME_LENGTH + "): ");
     String userName = scan.nextLine();
 
     String name;
@@ -75,7 +75,7 @@ public class AddUserDetails {
    */
   private static int getAge() {
     Scanner scan = new Scanner(System.in);
-    System.out.println("Enter your Age (5-100): ");
+    System.out.print("Enter your Age (5-100): ");
     String userAge = scan.nextLine();
 
     int age;
@@ -94,8 +94,8 @@ public class AddUserDetails {
    */
   private static String getAddress() {
     Scanner scan = new Scanner(System.in);
-    System.out.print("Enter your Address");
-    System.out.println("char-limit = " + MIN_ADDRESS_LENGTH + "-" + MAX_ADDRESS_LENGTH + ") : ");
+    System.out.print("Enter your Address ");
+    System.out.print("(char-limit = " + MIN_ADDRESS_LENGTH + "-" + MAX_ADDRESS_LENGTH + ") : ");
     String userAddress = scan.nextLine();
 
     String address;
@@ -113,8 +113,8 @@ public class AddUserDetails {
    */
   private static String getRollNumber() {
     Scanner scan = new Scanner(System.in);
-    System.out.println("Enter your Roll Number");
-    System.out.println("char-limit = " + MAX_ROLL_NUMBER_LENGTH + ") : ");
+    System.out.print("Enter your Roll Number ");
+    System.out.print("(char-limit = " + MAX_ROLL_NUMBER_LENGTH + ") : ");
     String userRollNumber = scan.nextLine();
 
     String rollNumber;
@@ -132,12 +132,12 @@ public class AddUserDetails {
    */
   private static Set<Character> getCourses() {
     Scanner scan = new Scanner(System.in);
-    System.out.println("Enter all courses separated by a space (min. " + MIN_COURSES_SIZE + "): ");
+    System.out.print("Enter all courses separated by a space (min. " + MIN_COURSES_SIZE + "): ");
     String userCourses = scan.nextLine();
     Set<Character> courses = new HashSet<>();
 
-    for (int i = 0; i < userCourses.length(); i++) {
-      char course = userCourses.charAt(i);
+    for (int i = 0; i < userCourses.length(); i += 2) {
+      char course = Character.toUpperCase(userCourses.charAt(i));
 
       if (i != userCourses.length() - 1 && userCourses.charAt(i + 1) != ' ') {
         System.err.println("Courses should be separated by a single space.");

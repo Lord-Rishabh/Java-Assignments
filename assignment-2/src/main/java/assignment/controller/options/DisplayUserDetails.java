@@ -28,7 +28,7 @@ public class DisplayUserDetails {
    * @return the sorting criteria entered by the user
    */
   private static String getSortCriteria() {
-    System.out.println("Enter sorting criteria (name, rollNumber, age, address) :");
+    System.out.print("Enter sorting criteria (name, rollNumber, age, address) : ");
     Scanner scan = new Scanner(System.in);
     return scan.nextLine();
   }
@@ -75,8 +75,8 @@ public class DisplayUserDetails {
     System.out.println("-------------------------------------------------------------------------");
     System.out.println("--------------------------------------");
 
-    System.out.print("Full Name      " + "Roll Number  ");
-    System.out.println("Address           " + "Age    " + "Courses");
+    System.out.print("Full Name       " + "Roll Number   ");
+    System.out.println("Address            " + "Age     " + "Courses");
 
     System.out.println("-------------------------------------------------------------------------");
     System.out.println("--------------------------------------");

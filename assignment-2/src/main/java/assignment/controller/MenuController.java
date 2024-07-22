@@ -47,7 +47,7 @@ public class MenuController {
    */
   public void takeInputAndGoToOption() {
     Scanner scan = new Scanner(System.in);
-    System.out.println("Enter the chosen option here : ");
+    System.out.print("Enter the chosen option here : ");
     int option = scan.nextInt();
     goToOption(option);
   }
@@ -78,5 +78,6 @@ public class MenuController {
       default:
         System.err.println("Please choose a correct option.");
     }
+    System.out.println();
   }
 }

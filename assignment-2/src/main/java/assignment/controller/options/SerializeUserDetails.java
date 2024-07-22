@@ -18,7 +18,7 @@ public class SerializeUserDetails {
    */
   public static void option(UserController userController) {
     Scanner scan = new Scanner(System.in);
-    System.out.println("Do you want to save User Details (y/n)? : ");
+    System.out.print("Do you want to save User Details (y/n)? : ");
     String userInput = scan.next();
     if (userInput.equalsIgnoreCase("y") || userInput.equalsIgnoreCase("yes")) {
       saveUserDetail(userController);
@@ -44,7 +44,7 @@ public class SerializeUserDetails {
       System.out.println("User Details has been saved.");
 
     } catch (Exception e) {
-      System.err.println("IOException is caught");
+      System.err.println(e + "IOException is caught");
     }
   }
 }

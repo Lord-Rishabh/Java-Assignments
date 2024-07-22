@@ -15,7 +15,7 @@ public class DeleteUserDetails {
    */
   public static void option(UserController userController) {
     Scanner scan = new Scanner(System.in);
-    System.out.println("Enter the Roll Number of the user you want to delete: ");
+    System.out.print("Enter the Roll Number of the user you want to delete: ");
     String rollNumber = scan.next();
     deleteUser(userController, rollNumber);
   }

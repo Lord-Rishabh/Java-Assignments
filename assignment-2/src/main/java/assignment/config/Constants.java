@@ -5,7 +5,7 @@ import java.util.Set;
 public class Constants {
 
   //  Add User Details Constants :
-  public static final Set<Character> VALID_COURSES = Set.of('A', 'B', 'C', 'D');
+  public static final Set<Character> VALID_COURSES = Set.of('A', 'B', 'C', 'D', 'E', 'F');
 
   public static final int MIN_NAME_LENGTH = 3;
   public static final int MAX_NAME_LENGTH = 15;

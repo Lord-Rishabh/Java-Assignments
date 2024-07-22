@@ -2,6 +2,7 @@ package assignment.controller;
 
 import assignment.models.User;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -11,18 +12,22 @@ import java.util.TreeSet;
 /**
  * Controller class for managing users.
  */
-public class UserController implements java.io.Serializable {
+public class UserController implements Serializable {
 
-  private final Comparator<User> userComparator = (u1, u2) -> {
-    int nameComparison = u1.getFullName().compareTo(u2.getFullName());
-    if (nameComparison != 0) {
-      return nameComparison;
-    } else {
-      return u1.getRollNumber().compareTo(u2.getRollNumber());
-    }
-  };
-
+  private final Comparator<User> userComparator = new UserComparator();
   private final Set<User> users = new TreeSet<>(userComparator);
+
+  private static class UserComparator implements Comparator<User>, Serializable {
+    @Override
+    public int compare(User u1, User u2) {
+      int nameComparison = u1.getFullName().compareTo(u2.getFullName());
+      if (nameComparison != 0) {
+        return nameComparison;
+      } else {
+        return u1.getRollNumber().compareTo(u2.getRollNumber());
+      }
+    }
+  }
 
   /**
    * Adds a user to the collection.
