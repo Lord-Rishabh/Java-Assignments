@@ -132,30 +132,16 @@ public class AddUserDetails {
    */
   private static Set<Character> getCourses() {
     Scanner scan = new Scanner(System.in);
-    System.out.print("Enter all courses separated by a space (min. " + MIN_COURSES_SIZE + "): ");
-    String userCourses = scan.nextLine();
-    Set<Character> courses = new HashSet<>();
 
-    for (int i = 0; i < userCourses.length(); i += 2) {
-      char course = Character.toUpperCase(userCourses.charAt(i));
+    while (true) {
+      System.out.print("Enter all courses separated by a space (min. " + MIN_COURSES_SIZE + "): ");
+      String userCourses = scan.nextLine();
 
-      if (i != userCourses.length() - 1 && userCourses.charAt(i + 1) != ' ') {
-        System.err.println("Courses should be separated by a single space.");
-        return getCourses();
+      Set<Character> courses = new HashSet<>();
+      // courses is being changed with this function
+      if (validCourses(userCourses, courses)) {
+        return courses;
       }
-
-      if (!VALID_COURSES.contains(course)) {
-        System.err.println("Invalid Course: " + course);
-        return getCourses();
-      }
-
-      courses.add(course);
-    }
-
-    if (validCourses(courses)) {
-      return courses;
-    } else {
-      return getCourses();
     }
   }
 }

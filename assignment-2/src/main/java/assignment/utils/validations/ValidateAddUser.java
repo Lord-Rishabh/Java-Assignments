@@ -1,15 +1,8 @@
 package assignment.utils.validations;
 
-import static assignment.config.Constants.MAX_ADDRESS_LENGTH;
-import static assignment.config.Constants.MAX_AGE;
-import static assignment.config.Constants.MAX_NAME_LENGTH;
-import static assignment.config.Constants.MAX_ROLL_NUMBER_LENGTH;
-import static assignment.config.Constants.MIN_ADDRESS_LENGTH;
-import static assignment.config.Constants.MIN_AGE;
-import static assignment.config.Constants.MIN_COURSES_SIZE;
-import static assignment.config.Constants.MIN_NAME_LENGTH;
-
 import java.util.Set;
+
+import static assignment.config.Constants.*;
 
 /**
  * Utility class for validating user information such as name, age, address,
@@ -19,7 +12,6 @@ public class ValidateAddUser {
 
   /**
    * Validates the provided name.
-   *
    * @param name the name to validate
    * @return {@code true} if the name is valid, {@code false} otherwise
    */
@@ -40,7 +32,6 @@ public class ValidateAddUser {
 
   /**
    * Validates the provided age.
-   *
    * @param age the age to validate as a string
    * @return {@code true} if the age is valid, {@code false} otherwise
    */
@@ -68,7 +59,6 @@ public class ValidateAddUser {
 
   /**
    * Validates the provided address.
-   *
    * @param address the address to validate
    * @return {@code true} if the address is valid, {@code false} otherwise
    */
@@ -86,7 +76,6 @@ public class ValidateAddUser {
 
   /**
    * Validates the provided roll number.
-   *
    * @param rollNumber the roll number to validate
    * @return {@code true} if the roll number is valid, {@code false} otherwise
    */
@@ -112,12 +101,27 @@ public class ValidateAddUser {
    * @param courses the set of courses to validate
    * @return {@code true} if the number of courses is valid, {@code false} otherwise
    */
-  public static boolean validCourses(Set<Character> courses) {
+  public static boolean validCourses(String userCourses, Set<Character> courses) {
+
     boolean validFlag = true;
+
+    for (int i = 0; i < userCourses.length(); i += 2) {
+      char course = Character.toUpperCase(userCourses.charAt(i));
+      if (i != userCourses.length() - 1 && userCourses.charAt(i + 1) != ' ') {
+        System.err.println("Courses should be separated by a single space.");
+        validFlag = false;
+      }
+      if (!VALID_COURSES.contains(course)) {
+        System.err.println("Invalid Course: " + course);
+        validFlag = false;
+      }
+      courses.add(course);
+    }
+
     if (courses.size() < MIN_COURSES_SIZE) {
-      System.err.println("Minimum " + MIN_COURSES_SIZE + " courses should be added.");
       validFlag = false;
     }
+
     return validFlag;
   }
 }
