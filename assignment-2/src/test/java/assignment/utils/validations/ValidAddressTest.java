@@ -1,9 +1,9 @@
 package assignment.utils.validations;
 
+import static assignment.utils.validations.ValidateAddUser.validAddress;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import static assignment.utils.validations.ValidateAddUser.validAddress;
 
 public class ValidAddressTest {
 
@@ -19,7 +19,7 @@ public class ValidAddressTest {
 
   @Test
   public void testAddressAboveMaxLimit() {
-    Assertions.assertFalse(validAddress("143 F, Route No. 154, Near St.Sebastian Garden, Goa, India"));
+    Assertions.assertFalse(validAddress("143 F, Route No. 154, Near St.Sebastian Garden, Goa"));
   }
 
   @Test

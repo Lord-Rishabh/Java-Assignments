@@ -1,9 +1,9 @@
 package assignment.utils.validations;
 
+import static assignment.utils.validations.ValidateAddUser.validName;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import static assignment.utils.validations.ValidateAddUser.validName;
 
 public class ValidNameTest {
 

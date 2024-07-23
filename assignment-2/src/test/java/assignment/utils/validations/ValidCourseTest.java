@@ -1,17 +1,18 @@
 package assignment.utils.validations;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static assignment.utils.validations.ValidateAddUser.validCourses;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import static assignment.utils.validations.ValidateAddUser.validCourses;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class ValidCourseTest {
 
   private Set<Character> courses;
+
   @BeforeEach
   public void setupCourses() {
     courses = new HashSet<>();

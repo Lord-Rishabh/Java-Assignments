@@ -1,8 +1,16 @@
 package assignment.utils.validations;
 
-import java.util.Set;
+import static assignment.config.Constants.MAX_ADDRESS_LENGTH;
+import static assignment.config.Constants.MAX_AGE;
+import static assignment.config.Constants.MAX_NAME_LENGTH;
+import static assignment.config.Constants.MAX_ROLL_NUMBER_LENGTH;
+import static assignment.config.Constants.MIN_ADDRESS_LENGTH;
+import static assignment.config.Constants.MIN_AGE;
+import static assignment.config.Constants.MIN_COURSES_SIZE;
+import static assignment.config.Constants.MIN_NAME_LENGTH;
+import static assignment.config.Constants.VALID_COURSES;
 
-import static assignment.config.Constants.*;
+import java.util.Set;
 
 /**
  * Utility class for validating user information such as name, age, address,
@@ -119,6 +127,7 @@ public class ValidateAddUser {
     }
 
     if (courses.size() < MIN_COURSES_SIZE) {
+      System.err.println("Minimum of 4 courses should be added.");
       validFlag = false;
     }
 

@@ -6,7 +6,6 @@ import static assignment.config.Constants.MAX_ROLL_NUMBER_LENGTH;
 import static assignment.config.Constants.MIN_ADDRESS_LENGTH;
 import static assignment.config.Constants.MIN_COURSES_SIZE;
 import static assignment.config.Constants.MIN_NAME_LENGTH;
-import static assignment.config.Constants.VALID_COURSES;
 
 import static assignment.utils.validations.ValidateAddUser.validAddress;
 import static assignment.utils.validations.ValidateAddUser.validAge;

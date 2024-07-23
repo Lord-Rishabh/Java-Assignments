@@ -1,15 +1,15 @@
 package assignment.utils.validations;
 
+import static assignment.utils.validations.ValidateAddUser.validAge;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import static assignment.utils.validations.ValidateAddUser.validAge;
 
 public class ValidAgeTest {
 
   @Test
   public void testEmptyAge() {
-     Assertions.assertFalse(validAge(""));
+    Assertions.assertFalse(validAge(""));
   }
 
   @Test
