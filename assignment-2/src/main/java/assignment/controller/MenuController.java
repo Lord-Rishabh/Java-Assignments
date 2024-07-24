@@ -20,14 +20,7 @@ public class MenuController {
    * Constructs a MenuController and attempts to load previously saved user data.
    */
   public MenuController() {
-    String filename = "file.ser";
-    try (FileInputStream file = new FileInputStream(filename);
-         ObjectInputStream in = new ObjectInputStream(file)) {
-
-      userController = (UserController) in.readObject();
-    } catch (Exception e) {
-      System.out.println("No previously saved file");
-    }
+    userController = SerializeUserDetails.getSavedUserDetails();
   }
 
   /**
