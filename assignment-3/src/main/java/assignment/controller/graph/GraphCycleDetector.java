@@ -1,14 +1,13 @@
 package assignment.controller.graph;
 
 import assignment.models.Node;
-import assignment.controller.NodeController;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class GraphCycleDetector {
 
-  public static boolean cycleExist(NodeController nodeController, Node parent, Node child) {
+  public static boolean cycleExist( Node parent, Node child) {
     if (parent == null || child == null) {
       return false;
     }

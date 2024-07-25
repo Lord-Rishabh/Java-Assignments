@@ -17,14 +17,14 @@
      */
     public void showMenu() {
       System.out.println("Choose any option : ");
-      System.out.println("1. Get the immediate parents of a node.");
-      System.out.println("2. Get the immediate children of a node.");
-      System.out.println("3. Get the ancestors of a node.");
-      System.out.println("4. Get the descendants of a node.");
-      System.out.println("5. Delete dependency from a tree.");
-      System.out.println("6. Delete a node from a tree.");
-      System.out.println("7. Add a new dependency to a tree.");
-      System.out.println("8. Add a new node to tree.");
+      System.out.println("1. Get Parents.");
+      System.out.println("2. Get Children.");
+      System.out.println("3. Get Ancestors.");
+      System.out.println("4. Get Descendants.");
+      System.out.println("5. Delete Dependency.");
+      System.out.println("6. Delete Node.");
+      System.out.println("7. Add Dependency.");
+      System.out.println("8. Add New Node.");
       System.out.println("9. Exit");
     }
 

@@ -3,7 +3,11 @@ package assignment.controller.options;
 import assignment.controller.NodeController;
 import assignment.models.Node;
 
+import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
+
+import static assignment.utils.Validations.validAddNode;
 
 public class AddNewNode {
 
@@ -11,9 +15,10 @@ public class AddNewNode {
 
     String nodeId = getNodeId(nodeController);
     String nodeName = getNodeName();
-    System.out.print("Do you want to add additional information ? (y/n) : ");
-    System.out.println("Enter the information : ");
+    Map<String, String> additionalInfo = getAdditionalInfo();
+
     Node node = new Node(nodeId, nodeName);
+    node.setAdditionalInfo(additionalInfo);
     nodeController.addNode(nodeId, node);
   }
 
@@ -23,14 +28,10 @@ public class AddNewNode {
     String currentNodeId = scan.nextLine();
     String nodeId;
 
-    if (currentNodeId.isEmpty()) {
-      System.err.println("Node id cannot be empty.");
-      nodeId = getNodeId(nodeController);
-    } else if (nodeController.checkNode(currentNodeId)) {
-      System.err.println("Node with this id already exist.");
-      nodeId = getNodeId(nodeController);
-    } else {
+    if (validAddNode(nodeController, currentNodeId)) {
       nodeId = currentNodeId;
+    } else {
+      nodeId = getNodeId(nodeController);
     }
     return nodeId;
   }
@@ -50,5 +51,34 @@ public class AddNewNode {
     return nodeName;
   }
 
+  private static Map<String, String> getAdditionalInfo() {
+    Map<String, String> additionalInfo = new TreeMap<>();
+    Scanner scan = new Scanner(System.in);
+    System.out.print("Do you want to add additional information? (y/n): ");
+    String flag = scan.next();
+
+    if (flag.equalsIgnoreCase("y")) {
+      System.out.print("Enter the number of information entries you want to add: ");
+      String sizeStr = scan.next();
+      int sizeOfInfo;
+
+      try {
+        sizeOfInfo = Integer.parseInt(sizeStr);
+      } catch (NumberFormatException e) {
+        System.err.println("Invalid number entered.");
+        sizeOfInfo = 0;
+      }
+
+      for (int i = 0; i < sizeOfInfo; i++) {
+        System.out.print("Enter key: ");
+        String key = scan.next();
+        System.out.print("Enter value: ");
+        String value = scan.next();
+        additionalInfo.put(key, value);
+      }
+    }
+
+    return additionalInfo;
+  }
 
 }

@@ -5,12 +5,14 @@ import assignment.models.Node;
 
 import java.util.Scanner;
 
+import static assignment.utils.Validations.validGetNode;
+
 public class DeleteNode {
 
   public static void option(NodeController nodeController) {
-    Node currentNode = getCurrentNode(nodeController);
+    Node currentNode = getNode(nodeController);
     if (currentNode != null) {
-      deleteNode(currentNode, nodeController);
+      deleteNode(currentNode);
       nodeController.removeNode(currentNode.getId());
       System.out.println("Node deleted successfully.");
     } else {
@@ -18,25 +20,20 @@ public class DeleteNode {
     }
   }
 
-  private static Node getCurrentNode(NodeController nodeController) {
+  private static Node getNode(NodeController nodeController) {
     Scanner scan = new Scanner(System.in);
     System.out.print("Enter the Node Id: ");
-    String nodeId = scan.nextLine();
+    String nodeId = scan.next();
 
-    while (nodeId.isEmpty() || !nodeController.checkNode(nodeId)) {
-      if (nodeId.isEmpty()) {
-        System.err.println("Node id cannot be empty.");
-      } else {
-        System.err.println("Node with this id does not exist.");
-      }
+    while (!validGetNode(nodeController, nodeId)) {
       System.out.print("Enter the Node Id: ");
-      nodeId = scan.nextLine();
+      nodeId = scan.next();
     }
 
     return nodeController.getNode(nodeId);
   }
 
-  private static void deleteNode(Node node, NodeController nodeController) {
+  private static void deleteNode(Node node) {
     for (Node parent : node.getParents()) {
       parent.getChildren().remove(node);
     }

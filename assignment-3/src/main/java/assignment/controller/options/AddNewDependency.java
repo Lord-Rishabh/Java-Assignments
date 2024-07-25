@@ -6,6 +6,8 @@ import assignment.models.Node;
 
 import java.util.Scanner;
 
+import static assignment.utils.Validations.validGetNode;
+
 public class AddNewDependency {
 
   public static void option(NodeController nodeController) {
@@ -14,7 +16,7 @@ public class AddNewDependency {
     Node parentNode = getNode(nodeController, "Parent");
     Node childNode = getNode(nodeController, "Child");
 
-    if (GraphCycleDetector.cycleExist(nodeController, parentNode, childNode)) {
+    if (GraphCycleDetector.cycleExist(parentNode, childNode)) {
       System.err.println("Adding this dependency is creating a cycle. Please re-enter dependency.");
       option(nodeController);
       return;
@@ -27,16 +29,11 @@ public class AddNewDependency {
   private static Node getNode(NodeController nodeController, String nodeType) {
     Scanner scan = new Scanner(System.in);
     System.out.print("Enter the " + nodeType + " Node Id: ");
-    String nodeId = scan.nextLine();
+    String nodeId = scan.next();
 
-    while (nodeId.isEmpty() || !nodeController.checkNode(nodeId)) {
-      if (nodeId.isEmpty()) {
-        System.err.println("Node id cannot be empty.");
-      } else {
-        System.err.println("Node with this id does not exist.");
-      }
+    while (!validGetNode(nodeController, nodeId)) {
       System.out.print("Enter the " + nodeType + " Node Id: ");
-      nodeId = scan.nextLine();
+      nodeId = scan.next();
     }
 
     return nodeController.getNode(nodeId);

@@ -5,6 +5,8 @@ import assignment.models.Node;
 
 import java.util.Scanner;
 
+import static assignment.utils.Validations.validGetNode;
+
 public class GetParents {
 
   public static void option(NodeController nodeController) {
@@ -16,16 +18,11 @@ public class GetParents {
   private static Node getNode(NodeController nodeController) {
     Scanner scan = new Scanner(System.in);
     System.out.print("Enter the Node Id: ");
-    String nodeId = scan.nextLine();
+    String nodeId = scan.next();
 
-    while (nodeId.isEmpty() || !nodeController.checkNode(nodeId)) {
-      if (nodeId.isEmpty()) {
-        System.err.println("Node id cannot be empty.");
-      } else {
-        System.err.println("Node with this id does not exist.");
-      }
+    while (!validGetNode(nodeController, nodeId)) {
       System.out.print("Enter the Node Id: ");
-      nodeId = scan.nextLine();
+      nodeId = scan.next();
     }
 
     return nodeController.getNode(nodeId);
