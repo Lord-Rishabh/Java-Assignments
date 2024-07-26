@@ -1,5 +1,7 @@
 package assignment.controller.options;
 
+import static assignment.utils.Validations.validAddNode;
+
 import assignment.controller.NodeController;
 import assignment.models.Node;
 
@@ -7,12 +9,16 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 
-import static assignment.utils.Validations.validAddNode;
-
+/**
+ * Handles the addition of a new node.
+ */
 public class AddNewNode {
 
-  public static void option(NodeController nodeController ) {
-
+  /**
+   * Prompts the user to enter node details and adds the new node to the controller.
+   * @param nodeController the controller managing the nodes
+   */
+  public static void option(NodeController nodeController) {
     String nodeId = getNodeId(nodeController);
     String nodeName = getNodeName();
     Map<String, String> additionalInfo = getAdditionalInfo();
@@ -22,9 +28,14 @@ public class AddNewNode {
     nodeController.addNode(nodeId, node);
   }
 
+  /**
+   * Prompts the user to enter a valid node ID.
+   * @param nodeController the controller managing the nodes
+   * @return the valid node ID entered by the user
+   */
   public static String getNodeId(NodeController nodeController) {
     Scanner scan = new Scanner(System.in);
-    System.out.print("Enter the node id : ");
+    System.out.print("Enter the node id: ");
     String currentNodeId = scan.nextLine();
     String nodeId;
 
@@ -36,14 +47,18 @@ public class AddNewNode {
     return nodeId;
   }
 
+  /**
+   * Prompts the user to enter a node name.
+   * @return the node name entered by the user
+   */
   public static String getNodeName() {
     Scanner scan = new Scanner(System.in);
-    System.out.print("Enter the node Name : ");
+    System.out.print("Enter the node name: ");
     String currentNodeName = scan.nextLine();
     String nodeName;
 
     if (currentNodeName.isEmpty()) {
-      System.err.println("Node id cannot be empty.");
+      System.err.println("Node name cannot be empty.");
       nodeName = getNodeName();
     } else {
       nodeName = currentNodeName;
@@ -51,6 +66,10 @@ public class AddNewNode {
     return nodeName;
   }
 
+  /**
+   * Prompts the user to enter additional information for the node.
+   * @return a map of additional information entries
+   */
   private static Map<String, String> getAdditionalInfo() {
     Map<String, String> additionalInfo = new TreeMap<>();
     Scanner scan = new Scanner(System.in);
@@ -80,5 +99,4 @@ public class AddNewNode {
 
     return additionalInfo;
   }
-
 }
