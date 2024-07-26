@@ -44,7 +44,7 @@ public class GetParents {
    * Prints the parents of the specified node.
    * @param node the node whose parents are to be printed
    */
-  private static void printParents(Node node) {
+  public static void printParents(Node node) {
     System.out.println();
     for (Node parent : node.getParents()) {
       System.out.print(parent.getId() + " ");

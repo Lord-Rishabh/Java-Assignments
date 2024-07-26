@@ -47,7 +47,7 @@ public class GetAncestors {
    * Prints the ancestors of the specified node.
    * @param node the node whose ancestors are to be printed
    */
-  private static void printAncestors(Node node) {
+  public static void printAncestors(Node node) {
     Set<Node> visited = new HashSet<>();
     Queue<Node> queue = new LinkedList<>();
     queue.add(node);

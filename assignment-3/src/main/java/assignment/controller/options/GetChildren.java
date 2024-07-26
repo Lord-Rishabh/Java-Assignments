@@ -43,7 +43,7 @@ public class GetChildren {
    * Prints the children of the specified node.
    * @param node the node whose children are to be printed
    */
-  private static void printChildren(Node node) {
+  public static void printChildren(Node node) {
     System.out.println();
     for (Node child : node.getChildren()) {
       System.out.print(child.getId() + " ");
