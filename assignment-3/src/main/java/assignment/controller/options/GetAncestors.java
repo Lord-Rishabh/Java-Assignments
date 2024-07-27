@@ -22,7 +22,8 @@ public class GetAncestors {
    */
   public static void option(NodeController nodeController) {
     Node node = getNode(nodeController);
-    printAncestors(node);
+    Set<Node> ancestors = getAncestors(node);
+    printAncestors(node, ancestors);
   }
 
   /**
@@ -44,10 +45,11 @@ public class GetAncestors {
   }
 
   /**
-   * Prints the ancestors of the specified node.
-   * @param node the node whose ancestors are to be printed
+   * Get the ancestors of the node.
+   * @param node the node whose ancestors are to be returned
+   * @return set of nodes which are the ancestors of the 'node'
    */
-  public static void printAncestors(Node node) {
+  public static Set<Node> getAncestors(Node node) {
     Set<Node> visited = new HashSet<>();
     Queue<Node> queue = new LinkedList<>();
     queue.add(node);
@@ -61,9 +63,17 @@ public class GetAncestors {
         }
       }
     }
+    return visited;
+  }
 
+  /**
+   * Prints the ancestors of the specified node.
+   * @param node the node whose ancestors are to be printed
+   * @param ancestors set of nodes which are the ancestors
+   */
+  private static void printAncestors(Node node, Set<Node> ancestors) {
     System.out.print("\nAncestors of node " + node.getId() + " are: ");
-    for (Node ancestor : visited) {
+    for (Node ancestor : ancestors) {
       System.out.print(ancestor.getId() + " ");
     }
     System.out.println();

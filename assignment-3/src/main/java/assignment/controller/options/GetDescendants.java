@@ -22,7 +22,8 @@ public class GetDescendants {
    */
   public static void option(NodeController nodeController) {
     Node node = getNode(nodeController);
-    printDescendants(node);
+    Set<Node> descendants = getDescendants(node);
+    printDescendants(node, descendants);
   }
 
   /**
@@ -44,10 +45,11 @@ public class GetDescendants {
   }
 
   /**
-   * Prints the descendants of the specified node.
-   * @param node the node whose descendants are to be printed
+   * Get the descendants of the node.
+   * @param node the node whose descendants are to be returned
+   * @return set of nodes which are the descendants of the 'node'
    */
-  public static void printDescendants(Node node) {
+  public static Set<Node> getDescendants(Node node) {
     Set<Node> visited = new HashSet<>();
     Queue<Node> queue = new LinkedList<>();
     queue.add(node);
@@ -62,8 +64,18 @@ public class GetDescendants {
       }
     }
 
+    return visited;
+
+  }
+
+  /**
+   * Prints the descendants of the specified node.
+   * @param node the node whose descendants are to be printed
+   * @param descendants set of nodes which are the descendants
+   */
+  private static void printDescendants(Node node, Set<Node> descendants) {
     System.out.print("\nDescendants of node " + node.getId() + " are: ");
-    for (Node descendant : visited) {
+    for (Node descendant : descendants) {
       System.out.print(descendant.getId() + " ");
     }
     System.out.println();

@@ -22,8 +22,7 @@ public class DeleteDependency {
     Node parentNode = getNode(nodeController, "Parent");
     Node childNode = getNode(nodeController, "Child");
 
-    parentNode.getChildren().remove(childNode);
-    childNode.getParents().remove(parentNode);
+    deleteDependency(parentNode, childNode);
   }
 
   /**
@@ -43,5 +42,15 @@ public class DeleteDependency {
     }
 
     return nodeController.getNode(nodeId);
+  }
+
+  /**
+   * Delete the dependency between the child and the parent node.
+   * @param parentNode the parent Node
+   * @param childNode the child Node
+   */
+  public static void deleteDependency(Node parentNode, Node childNode) {
+    parentNode.getChildren().remove(childNode);
+    childNode.getParents().remove(parentNode);
   }
 }

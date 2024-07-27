@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 public class TestDeleteNode {
 
-
   @Test
   public void testDeleteNode() {
     NodeController nodeController = new NodeController();
@@ -20,5 +19,4 @@ public class TestDeleteNode {
     nodeController.removeNode("1");
     Assertions.assertFalse(nodeController.checkNode("1"));
   }
-
 }

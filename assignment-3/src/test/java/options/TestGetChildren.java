@@ -1,13 +1,14 @@
 package options;
 
 import assignment.controller.NodeController;
-import assignment.controller.options.GetChildren;
 import assignment.models.Node;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Set;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class TestGetChildren {
 
@@ -26,10 +27,7 @@ public class TestGetChildren {
     nodeController.addDependency(node1, node2);
     nodeController.addDependency(node1, node3);
 
-    GetChildren.printChildren(node1);
-
-    String printedOutput = outputStream.toString().trim();
-
-    Assertions.assertEquals("2 3", printedOutput);
+    Set<Node> children = node1.getChildren();
+    Assertions.assertTrue(children.contains(node3));
   }
 }

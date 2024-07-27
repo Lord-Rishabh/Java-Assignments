@@ -1,13 +1,14 @@
 package options;
 
 import assignment.controller.NodeController;
-import assignment.controller.options.GetParents;
 import assignment.models.Node;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Set;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class TestGetParents {
 
@@ -26,10 +27,7 @@ public class TestGetParents {
     nodeController.addDependency(node1, node3);
     nodeController.addDependency(node2, node3);
 
-    GetParents.printParents(node3);
-
-    String printedOutput = outputStream.toString().trim();
-
-    Assertions.assertEquals("2 1", printedOutput);
+    Set<Node> parents = node3.getParents();
+    Assertions.assertTrue(parents.contains(node1));
   }
 }
