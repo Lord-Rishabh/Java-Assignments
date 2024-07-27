@@ -46,6 +46,7 @@ public class GetParents {
    */
   public static void printParents(Node node) {
     System.out.println();
+    System.out.print("Parents of node " + node.getId() + " are : ");
     for (Node parent : node.getParents()) {
       System.out.print(parent.getId() + " ");
     }

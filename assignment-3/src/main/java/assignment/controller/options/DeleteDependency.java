@@ -22,7 +22,12 @@ public class DeleteDependency {
     Node parentNode = getNode(nodeController, "Parent");
     Node childNode = getNode(nodeController, "Child");
 
-    deleteDependency(parentNode, childNode);
+    if (checkDependency(parentNode, childNode)) {
+      deleteDependency(parentNode, childNode);
+      System.out.println("Dependency deleted successfully");
+    } else {
+      System.err.println("Dependency doesn't exist between the parent and the child node");
+    }
   }
 
   /**
@@ -42,6 +47,21 @@ public class DeleteDependency {
     }
 
     return nodeController.getNode(nodeId);
+  }
+
+  /**
+   * Check if dependency exist between the child and the parent node.
+   * @param parentNode the parent Node
+   * @param childNode the child Node
+   */
+  private static boolean checkDependency(Node parentNode, Node childNode) {
+    boolean validFlag = true;
+    if (!parentNode.getChildren().contains(childNode)) {
+      validFlag = false;
+    } else if (!childNode.getParents().contains(parentNode)) {
+      validFlag = false;
+    }
+    return validFlag;
   }
 
   /**

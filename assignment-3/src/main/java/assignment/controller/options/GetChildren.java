@@ -45,6 +45,7 @@ public class GetChildren {
    */
   public static void printChildren(Node node) {
     System.out.println();
+    System.out.print("Children of node " + node.getId() + " are : ");
     for (Node child : node.getChildren()) {
       System.out.print(child.getId() + " ");
     }
