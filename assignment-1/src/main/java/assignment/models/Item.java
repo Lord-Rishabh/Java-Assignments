@@ -5,7 +5,12 @@ import assignment.models.tax.TaxCalculatorRegistry;
 import assignment.models.tax.types.ImportedTaxCalculator;
 import assignment.models.tax.types.ManufacturedTaxCalculator;
 import assignment.models.tax.types.RawTaxCalculator;
+import lombok.Getter;
+import lombok.Setter;
 
+
+@Setter
+@Getter
 public class Item {
 
   private String name;
@@ -57,35 +62,4 @@ public class Item {
     TaxCalculatorRegistry.setRegistry(ItemType.IMPORTED, new ImportedTaxCalculator());
   }
 
-  public String getName() {
-    return name;
-  }
-
-  public double getPrice() {
-    return price;
-  }
-
-  public int getQuantity() {
-    return quantity;
-  }
-
-  public ItemType getType() {
-    return type;
-  }
-
-  public double getTax() {
-    return tax;
-  }
-
-  public double getFinalPrice() {
-    return finalPrice;
-  }
-
-  public void setTax(double tax) {
-    this.tax = tax;
-  }
-
-  public void setFinalPrice(double finalPrice) {
-    this.finalPrice = finalPrice;
-  }
 }

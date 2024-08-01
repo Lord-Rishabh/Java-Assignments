@@ -176,12 +176,12 @@ public class ItemIoHandler {
    * @param item : the item whose details are to be printed
    */
   public void printItemDetails(Item item) {
-    System.out.print("Item Name:" + item.getName() + "  ");
-    System.out.print("Item Price:" + item.getPrice() + "  ");
-    System.out.print("Item Quantity:" + item.getQuantity() + "  ");
-    System.out.print("Item Type:" + item.getType() + "  ");
-    System.out.print("Item Tax:" + item.getTax() + "  ");
-    System.out.println("Item Final Price:" + item.getFinalPrice());
+    System.out.print("Name:" + item.getName() + "  ");
+    System.out.print("Price:" + item.getPrice() + "  ");
+    System.out.print("Quantity:" + item.getQuantity() + "  ");
+    System.out.print("Type:" + item.getType() + "  ");
+    System.out.print("Tax:" + item.getTax() + "  ");
+    System.out.println("Final Price:" + item.getFinalPrice());
   }
 
   /**

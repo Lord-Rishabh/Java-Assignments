@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'pmd'
     id 'checkstyle'
+    id 'application'
 }
 group 'org.example'
 version '1.0-SNAPSHOT'
@@ -16,6 +17,9 @@ dependencies {
     // https://projectlombok.org
     compileOnly 'org.projectlombok:lombok:1.18.22'
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
+}
+application {
+    mainClass = 'assignment.Main'  // Change this to your actual main class
 }
 test {
     useJUnitPlatform()
@@ -42,5 +46,10 @@ tasks.withType(Checkstyle).configureEach {
         html.required = true
     }
 }
-
-
+jar {
+    manifest {
+        attributes(
+                'Main-Class': application.mainClass
+        )
+    }
+}
