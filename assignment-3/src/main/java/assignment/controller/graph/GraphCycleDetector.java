@@ -2,8 +2,10 @@ package assignment.controller.graph;
 
 import assignment.models.Node;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Set;
 
 /**
  * Utility class for detecting cycles in a graph.
@@ -28,37 +30,45 @@ public class GraphCycleDetector {
   }
 
   /**
-   * Checks if a cycle exists starting from the given node.
+   * Checks if a cycle exists starting from the given node
+   * Performs a breath-first search to detect a cycle.
    * @param node the starting node
    * @return true if a cycle exists, false otherwise
    */
   public static boolean hasCycle(Node node) {
+    boolean validFlag = false;
+
     if (node == null) {
-      return false;
-    }
-    Map<Node, Boolean> visitedMap = new HashMap<>();
-    return dfs(node, visitedMap);
-  }
-
-  /**
-   * Performs a depth-first search to detect a cycle.
-   * @param node the current node
-   * @param visitedMap a map to keep track of visited nodes
-   * @return true if a cycle is detected, false otherwise
-   */
-  private static boolean dfs(Node node, Map<Node, Boolean> visitedMap) {
-    if (visitedMap.containsKey(node)) {
-      return visitedMap.get(node);
+      return validFlag;
     }
 
-    visitedMap.put(node, true);
-    for (Node child : node.getChildren()) {
-      if (dfs(child, visitedMap)) {
-        return true;
+    Queue<Node> queue = new LinkedList<>();
+    Set<Node> visited = new HashSet<>();
+
+    queue.add(node);
+    while (!queue.isEmpty()) {
+      Node curr = queue.poll();
+
+      if (visited.contains(curr)) {
+        validFlag = true;
+        break;
+      }
+
+      visited.add(curr);
+
+      for (Node child : curr.getChildren()) {
+        if (visited.contains(child)) {
+          validFlag = true;
+          break;
+        }
+        queue.add(child);
+      }
+
+      if (validFlag) {
+        break;
       }
     }
-    visitedMap.put(node, false);
 
-    return false;
+    return validFlag;
   }
 }

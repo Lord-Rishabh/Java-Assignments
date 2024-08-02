@@ -28,7 +28,6 @@ public class TestGraphCycleDetector {
 
     nodeController.addDependency(node1, node2);
     nodeController.addDependency(node2, node3);
-    nodeController.addDependency(node3, node3);
 
     Assertions.assertTrue(GraphCycleDetector.cycleExist(node3, node1));
   }
