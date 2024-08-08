@@ -25,7 +25,7 @@ public class ItemDb {
     PreparedStatement pst = con.prepareStatement(insertSql);
 
     if (args.length == ARGS_LENGTH) {
-      itemIoHandler.addItemToDb(args, con, pst);
+      itemIoHandler.addItemToDb(args, pst);
       pst.executeUpdate();
     }
     while (itemIoHandler.userWantsToAddItem()) {

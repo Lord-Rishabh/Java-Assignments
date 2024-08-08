@@ -37,14 +37,14 @@ public class ItemIoHandler {
       throw new RuntimeException("Item Details cannot be null");
     }
 
-    addItemToDb(inputArgs, con, pst);
+    addItemToDb(inputArgs, pst);
   }
 
   /**
    * Adds an item based on the provided arguments.
    * @param args the arguments containing item details
    */
-  public void addItemToDb(String[] args, Connection con, PreparedStatement pst) throws Exception {
+  public void addItemToDb(String[] args, PreparedStatement pst) throws Exception {
     String name = null;
     double price = 0;
     int quantity = 0;
@@ -85,7 +85,7 @@ public class ItemIoHandler {
    */
   private String setName(String name) {
     if (name == null) {
-      throw new RuntimeException("Item name already exists or is null.");
+      throw new RuntimeException("Item name cannot null.");
     }
     return name;
   }
