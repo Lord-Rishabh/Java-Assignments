@@ -5,14 +5,12 @@ import assignment.controller.options.DeleteUserDetails;
 import assignment.controller.options.DisplayUserDetails;
 import assignment.controller.options.SerializeUserDetails;
 
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
 import java.util.Scanner;
 
 /**
  * Controller class for managing the menu and user options.
  */
-public class MenuController {
+public class MenuController implements IMenuController {
 
   private static UserController userController = new UserController();
 
@@ -50,7 +48,7 @@ public class MenuController {
    *
    * @param option the option chosen by the user
    */
-  private void goToOption(int option) {
+  public void goToOption(int option) {
     switch (option) {
       case 1:
         AddUserDetails.option(userController);

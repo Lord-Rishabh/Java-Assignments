@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class ItemIoHandler {
+public class ItemIoHandler implements itemIoHandlerI {
 
   private final Map<String, Item> items = new HashMap<>();
 
