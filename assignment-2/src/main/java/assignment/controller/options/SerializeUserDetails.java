@@ -1,11 +1,8 @@
 package assignment.controller.options;
 
 import assignment.controller.UserController;
-import assignment.models.User;
 
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
@@ -16,6 +13,7 @@ public class SerializeUserDetails {
 
   /**
    * Prompts the user to save user details and performs the save operation if confirmed.
+   *
    * @param userController the controller managing user details
    */
   public static void option(UserController userController) {
@@ -29,6 +27,7 @@ public class SerializeUserDetails {
 
   /**
    * Saves the user details to a file.
+   *
    * @param userController the controller managing user details
    */
   public static void saveUserDetail(UserController userController) {
@@ -47,22 +46,5 @@ public class SerializeUserDetails {
     } catch (Exception e) {
       System.err.println(e + "IOException is caught");
     }
-  }
-
-  /**
-   * Attempts to load previously saved user data.
-   */
-  public static UserController getSavedUserDetails() {
-    String filename = "file.ser";
-    UserController userController;
-    try (FileInputStream file = new FileInputStream(filename);
-         ObjectInputStream in = new ObjectInputStream(file)) {
-
-      userController = (UserController) in.readObject();
-    } catch (Exception e) {
-      System.out.println("No previously saved file");
-      userController = new UserController();
-    }
-    return userController;
   }
 }
