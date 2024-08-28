@@ -3,6 +3,7 @@ package assignment.controller.options;
 import assignment.controller.UserController;
 import assignment.models.User;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
@@ -14,32 +15,49 @@ public class DisplayUserDetails {
 
   /**
    * Provides options to sort and display user details.
-   *
    * @param userController the controller managing user details
    */
   public static void option(UserController userController) {
     String sortCriteria = getSortCriteria();
-    sortAndPrintUserList(userController, sortCriteria);
+    String sortOrder = getSortOrder();
+    sortAndPrintUserList(userController, sortCriteria, sortOrder);
   }
 
   /**
    * Prompts the user to enter sorting criteria.
-   *
    * @return the sorting criteria entered by the user
    */
   private static String getSortCriteria() {
-    System.out.print("Enter sorting criteria (name, rollNumber, age, address) :");
+    System.out.print("Enter sorting criteria (name, rollNumber, age, address) : ");
     Scanner scan = new Scanner(System.in);
     return scan.nextLine();
   }
 
   /**
+   * Prompts the user to enter sorting criteria.
+   * @return the sorting criteria entered by the user
+   */
+  private static String getSortOrder() {
+    System.out.print("Enter sorting order (Choose: asc or dsc): ");
+    Scanner scan = new Scanner(System.in);
+    String sortOrder = scan.nextLine().toLowerCase();
+
+    if (!sortOrder.equals("asc") && !sortOrder.equals("dsc")) {
+      System.out.println("Invalid input.");
+      sortOrder = getSortOrder();
+    }
+
+    return sortOrder;
+  }
+
+  /**
    * Sorts the user list based on the specified criteria and prints the details.
-   *
    * @param userController the controller managing user details
    * @param sortCriteria   the criteria to sort the user list
    */
-  protected static void sortAndPrintUserList(UserController userController, String sortCriteria) {
+  public static void sortAndPrintUserList(UserController userController,
+                                          String sortCriteria,
+                                          String sortOrder) {
     List<User> userList = userController.getUserList();
     Comparator<User> comparator;
 
@@ -63,20 +81,22 @@ public class DisplayUserDetails {
     }
 
     userList.sort(comparator);
+    if (sortOrder.equalsIgnoreCase("dsc")) {
+      Collections.reverse(userList);
+    }
     printAllUserDetails(userList);
   }
 
   /**
    * Prints all user details in a formatted manner.
-   *
    * @param userList the list of users to print
    */
   private static void printAllUserDetails(List<User> userList) {
     System.out.println("-------------------------------------------------------------------------");
     System.out.println("--------------------------------------");
 
-    System.out.print("Full Name      " + "Roll Number  ");
-    System.out.println("Address           " + "Age    " + "Courses");
+    System.out.print("Full Name       " + "Roll Number   ");
+    System.out.println("Address            " + "Age     " + "Courses");
 
     System.out.println("-------------------------------------------------------------------------");
     System.out.println("--------------------------------------");

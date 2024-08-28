@@ -6,7 +6,6 @@ import static assignment.config.Constants.MAX_ROLL_NUMBER_LENGTH;
 import static assignment.config.Constants.MIN_ADDRESS_LENGTH;
 import static assignment.config.Constants.MIN_COURSES_SIZE;
 import static assignment.config.Constants.MIN_NAME_LENGTH;
-import static assignment.config.Constants.VALID_COURSES;
 
 import static assignment.utils.validations.ValidateAddUser.validAddress;
 import static assignment.utils.validations.ValidateAddUser.validAge;
@@ -66,7 +65,6 @@ public class AddUserDetails {
     } else {
       name = getFullName();
     }
-
     return name;
   }
 
@@ -105,7 +103,6 @@ public class AddUserDetails {
     } else {
       address = getAddress();
     }
-
     return address;
   }
 
@@ -125,7 +122,6 @@ public class AddUserDetails {
     } else {
       rollNumber = getRollNumber();
     }
-
     return rollNumber;
   }
 
@@ -135,27 +131,16 @@ public class AddUserDetails {
    */
   private static Set<Character> getCourses() {
     Scanner scan = new Scanner(System.in);
-    System.out.print("Enter all courses separated by a space (min. " + MIN_COURSES_SIZE + "): ");
-    String userCourses = scan.nextLine();
-    Set<Character> courses = new HashSet<>();
 
-    for (int i = 0; i < userCourses.length(); i += 2) {
-      char course = Character.toUpperCase(userCourses.charAt(i));
-      if (i != userCourses.length() - 1 && userCourses.charAt(i + 1) != ' ') {
-        System.err.println("Courses should be separated by a single space.");
-        return getCourses();
-      }
-      if (!VALID_COURSES.contains(course)) {
-        System.err.println("Invalid Course: " + course);
-        return getCourses();
-      }
-      courses.add(course);
-    }
+    while (true) {
+      System.out.print("Enter all courses separated by a space (min. " + MIN_COURSES_SIZE + "): ");
+      String userCourses = scan.nextLine();
 
-    if (validCourses(courses)) {
-      return courses;
-    } else {
-      return getCourses();
+      Set<Character> courses = new HashSet<>();
+      // courses is being changed with this function
+      if (validCourses(userCourses, courses)) {
+        return courses;
+      }
     }
   }
 }

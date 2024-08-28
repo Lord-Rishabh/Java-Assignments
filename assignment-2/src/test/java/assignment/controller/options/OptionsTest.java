@@ -36,7 +36,7 @@ public class OptionsTest {
   public void addUserDetails() {
     User user = new User("Rishabh", 21, "Address2", "002", courses);
     AddUserDetails.addUser(userController, user);
-    DisplayUserDetails.sortAndPrintUserList(userController, "name");
+    DisplayUserDetails.sortAndPrintUserList(userController, "name", "asc");
   }
 
   /**
@@ -52,10 +52,10 @@ public class OptionsTest {
     AddUserDetails.addUser(userController, user2);
     AddUserDetails.addUser(userController, user3);
 
-    DisplayUserDetails.sortAndPrintUserList(userController, "name");
-    DisplayUserDetails.sortAndPrintUserList(userController, "rollNumber");
-    DisplayUserDetails.sortAndPrintUserList(userController, "age");
-    DisplayUserDetails.sortAndPrintUserList(userController, "address");
+    DisplayUserDetails.sortAndPrintUserList(userController, "name", "asc");
+    DisplayUserDetails.sortAndPrintUserList(userController, "rollNumber", "asc");
+    DisplayUserDetails.sortAndPrintUserList(userController, "age", "asc");
+    DisplayUserDetails.sortAndPrintUserList(userController, "address", "asc");
   }
 
   /**
@@ -69,9 +69,9 @@ public class OptionsTest {
     AddUserDetails.addUser(userController, user1);
     AddUserDetails.addUser(userController, user2);
 
-    DisplayUserDetails.sortAndPrintUserList(userController, "name");
+    DisplayUserDetails.sortAndPrintUserList(userController, "name", "asc");
     DeleteUserDetails.deleteUser(userController, "005");
-    DisplayUserDetails.sortAndPrintUserList(userController, "name");
+    DisplayUserDetails.sortAndPrintUserList(userController, "name", "asc");
   }
 
   /**
