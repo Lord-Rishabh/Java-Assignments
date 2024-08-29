@@ -12,7 +12,7 @@ import java.util.TreeSet;
 /**
  * Controller class for managing users.
  */
-public class UserController implements Serializable {
+public class UserController implements Serializable , IUserController {
 
   private final Comparator<User> userComparator = new UserComparator();
   private final Set<User> users = new TreeSet<>(userComparator);
