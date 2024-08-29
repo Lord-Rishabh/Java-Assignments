@@ -112,3 +112,5 @@ public class ItemIoHandlerTest {
     itemHandler.printAllItems();
   }
 }
+
+// -name burger -quantity 120 -price 120 -type raw
